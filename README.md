@@ -110,6 +110,7 @@ German_Energy_Transition_Lakehouse/
 │   ├── 01_validate_landing_source_file         # Source file validation
 │   ├── 02_create_germany_selected_file         # Germany column extraction
 │   ├── 03_split_source_into_monthly_batches    # Monthly batch file creation
+|   ├── 04-04_create_audit_control_tables
 │   └── 05_initialize_batch_control             # Batch control table population
 │
 ├── 02_bronze_ingestion/
@@ -342,19 +343,6 @@ audit_schema = "audit"
 * PySpark transformations and DataFrame operations
 * Idempotent pipeline design for reliability
 
-##### Data Modeling
-* Star schema design principles
-* Slowly Changing Dimensions (SCD) patterns (planned)
-* Time-series data partitioning strategies
-* Audit and metadata tracking
-
-##### Best Practices
-* Environment-agnostic configuration management
-* Comprehensive logging and error handling
-* Data validation at ingestion boundaries
-* Reusable notebook patterns
-* Clear project structure and documentation
-
 ---
 
 #### Lessons Learned
@@ -440,10 +428,8 @@ audit_schema = "audit"
 
 #### Contact & Portfolio
 
-**Author:** Arthi Raja  
-**LinkedIn:** [Add your LinkedIn URL]  
-**GitHub:** [Add your GitHub URL]  
-**Email:** arthiraja@studdortmund.onmicrosoft.com
+**Author:** Arthisree
+
 
 ---
 
