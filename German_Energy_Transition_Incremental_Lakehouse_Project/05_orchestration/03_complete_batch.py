@@ -16,7 +16,7 @@ batch_id = dbutils.widgets.get("p_batch_id")
 # COMMAND ----------
 
 class BatchCompleter:
-    """Refreshes Gold and marks the successfully processed batch complete."""
+    """Processes the batch in Gold and marks it complete."""
 
     def complete(self, batch_id):
         if not batch_id:
@@ -24,9 +24,9 @@ class BatchCompleter:
 
         gold = GoldAggregation(
             spark, silver_table, daily_load_summary_table,
-            daily_generation_summary_table, daily_renewable_share_table, tso_zones,
+            daily_generation_summary_table, daily_wind_solar_share_table, tso_zones,
         )
-        gold.refresh_gold()
+        gold.process_batch(batch_id)
 
         updates = (
             spark.createDataFrame([(batch_id,)], ["batch_id"])

@@ -35,7 +35,7 @@ class BronzeIngestion:
             self.spark.read
             .option("header", True)
             .csv(year_path)
-            .withColumn("source_file", F.input_file_name())
+            .withColumn("source_file", F.col("_metadata.file_path"))
             .filter(
                 (F.year(F.to_timestamp(F.col("utc_timestamp"))) == year)
                 & (F.month(F.to_timestamp(F.col("utc_timestamp"))) == month)
@@ -77,7 +77,3 @@ class BronzeIngestion:
             .whenNotMatchedInsertAll()
             .execute()
         )
-
-# COMMAND ----------
-
-display

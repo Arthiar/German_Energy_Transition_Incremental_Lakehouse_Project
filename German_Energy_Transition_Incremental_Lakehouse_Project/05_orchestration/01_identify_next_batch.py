@@ -1,8 +1,4 @@
 # Databricks notebook source
-# /// script
-# [tool.databricks.environment]
-# environment_version = "5"
-# ///
 # MAGIC %run ../01_config/01_bronze_config
 
 # COMMAND ----------
@@ -18,7 +14,7 @@ class NextBatchFinder:
 
     def find(self):
         source_batches = (
-            spark.read.option("header", True).csv(f"{landing_volume_path}/year=*")
+            spark.read.option("header", True).option("basePath", landing_volume_path).csv(f"{landing_volume_path}/year=*")
             .select(F.to_timestamp("utc_timestamp").alias("utc_timestamp"))
             .filter(F.col("utc_timestamp").isNotNull())
             .select(
